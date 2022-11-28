@@ -4,16 +4,10 @@ import logo from '../../assets/logo.svg';
 import { Button, Modal} from '@material-ui/core';
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
-import TabList from '@mui/lab/TabList';
-import TabContext from '@mui/lab/TabContext';
-//import TabPanel from '@mui/lab/TabPanel';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import Input from '@mui/material/Input';
 import FormHelperText from '@mui/material/FormHelperText';
-import Home from '../../screens/home/Home';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-//import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 
