@@ -5,15 +5,17 @@ import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
 import FilterCard from "./FilterCard";
+import '../../common/stylesheet/common.css'
+import { Link } from 'react-router-dom';
 
-const Home = () => {
+const Home = (props) => {
 
-    const [filterParam, setFilterParam] = useState({ 
+    const [filterParam, setFilterParam] = useState({
         'title': '',
         'genres': '',
-        'artists':'',
+        'artists': '',
         'startDate': '',
-        'endDate':''
+        'endDate': ''
     });
 
     return (
@@ -29,7 +31,7 @@ const Home = () => {
             </div>
             <div id="released-movies-and-filter-container">
                 <div className="released-movies grid-76 margin-16">
-                    <ReleasedMovies filterParam={filterParam} />
+                    <ReleasedMovies filterParam={filterParam} history={props.history} />
                 </div>
                 <div className="movie-filter grid-24 margin-16">
                     <FilterCard setFilterParam={setFilterParam} />
@@ -139,10 +141,12 @@ export function ReleasedMovies(props) {
         >
             {
                 releasedMovies.map((movie) => (
-                    <ImageListItem key={movie.id} className='back'>
-                        <img src={movie.poster_url} alt={movie.title} />
-                        <ImageListItemBar title={movie.title} subtitle={`Released Date : ${movie.release_date}`} />
-                    </ImageListItem>
+                    <Link to={`/movie/${movie.id}`}>
+                        <ImageListItem key={movie.id} className='back' >
+                            <img src={movie.poster_url} alt={movie.title} />
+                            <ImageListItemBar title={movie.title} subtitle={`Released Date : ${movie.release_date}`} />
+                        </ImageListItem>
+                    </Link>
                 ))
             }
         </ImageList>
