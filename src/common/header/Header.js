@@ -111,8 +111,6 @@ const Header = (props) => {
         }
     }
 
-    const bookNowButton = '';
-
     return (
         <div className="header">
             <div>
