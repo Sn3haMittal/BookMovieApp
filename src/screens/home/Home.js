@@ -7,6 +7,8 @@ import ImageListItemBar from '@mui/material/ImageListItemBar';
 import FilterCard from "./FilterCard";
 import '../../common/stylesheet/common.css'
 import { Link } from 'react-router-dom';
+import AppLogo from '../../assets/logo.svg';
+
 
 const Home = (props) => {
 
@@ -48,6 +50,15 @@ export function UpcomingMovies() {
         getUpcomingMovies()
     }, [])
 
+    const [defaultImage, setdefaultImage] = useState();
+
+    // replace image function
+    const replaceImage = (error) => {
+        //replacement of broken Image
+        setdefaultImage(AppLogo);
+        error.target.src = defaultImage; 
+    }
+
     // Make an api call for get published/upcoming movies
     const getUpcomingMovies = async () => {
         try {
@@ -86,7 +97,7 @@ export function UpcomingMovies() {
             {
                 upcomingMovies.map((movie) => (
                     <ImageListItem key={movie.id}>
-                        <img src={movie.poster_url} alt={movie.title} />
+                        <img src={movie.poster_url} alt={movie.title} onError={replaceImage} />
                         <ImageListItemBar title={movie.title} />
                     </ImageListItem>
                 ))
@@ -105,6 +116,15 @@ export function ReleasedMovies(props) {
     useEffect(() => {
         getReleasedMovies()
     }, [props.filterParam])
+
+    const [defaultImage, setdefaultImage] = useState();
+
+    // replace image function
+    const replaceImage = (error) => {
+        //replacement of broken Image
+        setdefaultImage(AppLogo);
+        error.target.src = defaultImage; 
+    }
 
     // Make an api call for get released movies
     const getReleasedMovies = async () => {
@@ -140,13 +160,15 @@ export function ReleasedMovies(props) {
             gap={10}
         >
             {
-                releasedMovies.map((movie) => (
-                    <Link to={`/movie/${movie.id}`}>
-                        <ImageListItem key={movie.id} className='back' >
-                            <img src={movie.poster_url} alt={movie.title} />
-                            <ImageListItemBar title={movie.title} subtitle={`Released Date : ${movie.release_date}`} />
-                        </ImageListItem>
-                    </Link>
+                releasedMovies.map((movie, index) => (
+                    <div key={index}>
+                        <Link to={`/movie/${movie.id}`}>
+                            <ImageListItem key={movie.id} className='back' >
+                                <img src={movie.poster_url} alt={movie.title} onError={replaceImage}/>
+                                <ImageListItemBar title={movie.title} subtitle={`Released Date : ${movie.release_date}`} />
+                            </ImageListItem>
+                        </Link>
+                    </div>
                 ))
             }
         </ImageList>

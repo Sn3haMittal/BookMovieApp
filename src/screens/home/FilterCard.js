@@ -200,11 +200,10 @@ function FilterCard(props) {
                     <TextField
                         label="Release Date Start"
                         type="date"
-                        defaultValue="dd-mm-yyyy"
                         InputLabelProps={{
                             shrink: true,
                         }}
-                        value={startDate}
+                        value={startDate? "dd-mm-yyyy": startDate}
                         onChange={onStartDateChanged}
                     />
                 </FormControl>
@@ -213,11 +212,10 @@ function FilterCard(props) {
                     <TextField
                         label="Release Date End"
                         type="date"
-                        defaultValue="dd-mm-yyyy"
                         InputLabelProps={{
                             shrink: true,
                         }}
-                        value={endDate}
+                        value={endDate? "dd-mm-yyyy": endDate}
                         onChange={onEndDateChanged}
                     />
                 </FormControl>
